@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %} Assignments Task {% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+
+        {% block content %}
+            {{ include('menu.html.twig') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            <script src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>
+            <script src="{{ asset('assets/bootstrap/js/bootstrap.js') }}"></script>
+        {% endblock %}
+
+    </body>
+</html>

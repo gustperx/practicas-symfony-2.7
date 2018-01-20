@@ -1,7 +1,3 @@
-hs_user_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: HSUserBundle:Default:index }
-
 hs_user_index:
     path:     /user/index
     defaults: { _controller: HSUserBundle:User:index}
@@ -9,6 +5,11 @@ hs_user_index:
 hs_user_create:
     path:     /user/create
     defaults: { _controller: HSUserBundle:User:create}
+
+hs_user_store:
+    path:     /user/store
+    defaults: { _controller: HSUserBundle:User:store}
+    methods:  POST
 
 hs_user_edit:
     path:     /user/edit/{id}
@@ -21,3 +22,10 @@ hs_user_view:
 hs_user_delete:
     path:     /user/delete/{id}
     defaults: { _controller: HSUserBundle:User:delete}
+
+hs_user_redirecd_create:
+    path:     /user/store
+    defaults:
+        _controller: HSUserBundle:User:create
+        path: /user/create
+        permanent: true
