@@ -1,0 +1,7 @@
+hs_user:
+    resource: "@HSUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation

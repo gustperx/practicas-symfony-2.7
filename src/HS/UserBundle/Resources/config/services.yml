@@ -1,0 +1,4 @@
+services:
+#    hs_user.example:
+#        class: HS\UserBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
