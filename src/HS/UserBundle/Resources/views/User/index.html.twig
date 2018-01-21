@@ -4,7 +4,14 @@
 
     {{ parent() }}
 
+    <div class="progress no-border hidden" id="delete-progress">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
     {{ include('HSUserBundle:Messages:success.html.twig') }}
+    {{ include('HSUserBundle:Messages:danger.html.twig') }}
 
     <div class="container">
         <div class="col-md-12">
@@ -12,7 +19,7 @@
                 <h2 class="padding-none"> {{ 'Users'|trans }} </h2>
             </div>
 
-            Total Records: {{ pagination.getTotalItemCount }}
+            Total Records: <span id="total">{{ pagination.getTotalItemCount }}</span>
 
             <div class="table-responsive">
 
@@ -32,7 +39,7 @@
 
                     <tbody>
                         {% for user in pagination %}
-                            <tr>
+                            <tr data-id="{{ user.id }}">
                                 <td>{{ user.username }}</td>
                                 <td>{{ user.firstName }}</td>
                                 <td>{{ user.lastName }}</td>
@@ -47,9 +54,9 @@
                                 <td>{{ user.createdAt | date('d-m-Y') }}</td>
                                 <td>{{ user.updatedAt | date('d-m-Y') }}</td>
                                 <td class="actions">
-                                    <a href="#" class="btn btn-sm btn-info">{{ 'View'|trans }}</a>
-                                    <a href="#" class="btn btn-sm btn-primary">{{ 'Edit'|trans }}</a>
-                                    <a href="#" class="btn btn-sm btn-danger">{{ 'Delete'|trans }}</a>
+                                    <a href="{{ path('hs_user_view', {id: user.id}) }}" class="btn btn-sm btn-info">{{ 'View'|trans }}</a>
+                                    <a href="{{ path('hs_user_edit', {id: user.id}) }}" class="btn btn-sm btn-primary">{{ 'Edit'|trans }}</a>
+                                    <a href="#" class="btn btn-sm btn-danger btn-delete">{{ 'Delete'|trans }}</a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -63,5 +70,15 @@
             </div>
         </div>
     </div>
+
+    {{ include('HSUserBundle:User:forms/form.html.twig', {form: delete_form_ajax, id: 'form-delete', with_submit: false}) }}
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/hsuser/js/delete-user.js') }}"></script>
 
 {% endblock %}

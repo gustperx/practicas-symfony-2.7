@@ -15,6 +15,11 @@ hs_user_edit:
     path:     /user/edit/{id}
     defaults: { _controller: HSUserBundle:User:edit}
 
+hs_user_update:
+    path:     /user/update/{id}
+    defaults: { _controller: HSUserBundle:User:update}
+    methods:  [POST, PUT]
+
 hs_user_view:
     path:     /user/view/{id}
     defaults: { _controller: HSUserBundle:User:view}
@@ -22,10 +27,18 @@ hs_user_view:
 hs_user_delete:
     path:     /user/delete/{id}
     defaults: { _controller: HSUserBundle:User:delete}
+    methods:  [POST, DELETE]
 
 hs_user_redirecd_create:
     path:     /user/store
     defaults:
         _controller: HSUserBundle:User:create
         path: /user/create
+        permanent: true
+
+hs_user_redirecd_edit:
+    path:     /user/update/{id}
+    defaults:
+        _controller: HSUserBundle:User:edit
+        path: /user/edit/{id}
         permanent: true
